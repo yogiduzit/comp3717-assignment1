@@ -31,7 +31,7 @@ public class NewsListActivity extends AppCompatActivity {
     /**
      * Async task class to get json by making HTTP call
      */
-    private class GetContacts extends AsyncTask<Void, Void, Void> {
+    private class GetNewsItems extends AsyncTask<Void, Void, Void> {
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
@@ -90,6 +90,6 @@ public class NewsListActivity extends AppCompatActivity {
 
         newsItemList = new ArrayList<NewsItem>();
         lv = findViewById(R.id.news_item_list);
-        new GetContacts().execute();
+        new GetNewsItems().execute();
     }
 }

@@ -1,13 +1,8 @@
 package com.example.verma_dam.data;
 
-import android.os.Parcel;
-import android.os.Parcelable;
-import android.util.Log;
-
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.sql.Timestamp;
 
