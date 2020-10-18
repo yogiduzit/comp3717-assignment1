@@ -20,13 +20,13 @@ import java.util.Map;
 public class NewsListActivity extends AppCompatActivity {
 
     private static final String API_KEY = "b4350f204db044389a45332ae2003a66";
+    private String queryString = "q=";
     // URL to get news
-    private static String SERVICE_URL = "https://newsapi.org/v2/everything?q=bitcoin&from=2020-10-14&sortBy=publishedAt&apiKey=" + API_KEY;
+    private static String SERVICE_URL;
 
     private String TAG = NewsListActivity.class.getSimpleName();
     private ListView lv;
     private ArrayList<NewsItem> newsItemList;
-    private String queryString = "q=";
 
     /**
      * Async task class to get json by making HTTP call
@@ -53,7 +53,6 @@ public class NewsListActivity extends AppCompatActivity {
                 // a JSON object that looks like this { "toons": . . . . }
                 Gson gson = new Gson();
                 Map response = gson.fromJson(jsonStr, Map.class);
-
                 BaseNewsItem baseNewsItem = gson.fromJson(jsonStr, BaseNewsItem.class);
                 newsItemList = baseNewsItem.getNewsItems();
             } else {
@@ -86,6 +85,8 @@ public class NewsListActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        queryString += getIntent().getStringExtra("search");
+        SERVICE_URL = "https://newsapi.org/v2/everything?" + queryString + "&from=2020-10-14&sortBy=publishedAt&apiKey=" + API_KEY;
         setContentView(R.layout.activity_news_list);
 
         newsItemList = new ArrayList<NewsItem>();
