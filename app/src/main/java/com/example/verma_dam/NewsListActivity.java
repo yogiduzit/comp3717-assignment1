@@ -1,5 +1,6 @@
 package com.example.verma_dam;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.AsyncTask;
@@ -97,5 +98,15 @@ public class NewsListActivity extends AppCompatActivity {
         newsItemList = new ArrayList<NewsItem>();
         lv = findViewById(R.id.news_item_list);
         new GetNewsItems().execute();
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+    }
+
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
     }
 }
