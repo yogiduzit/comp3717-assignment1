@@ -22,7 +22,7 @@ public class NewsListActivity extends AppCompatActivity {
     private static final String API_KEY = "b4350f204db044389a45332ae2003a66";
     private String queryString = "q=";
     // URL to get news
-    private static String SERVICE_URL;
+    private static String SERVICE_URL = "https://newsapi.org/v2/everything?";
 
     private String TAG = NewsListActivity.class.getSimpleName();
     private ListView lv;
@@ -86,7 +86,7 @@ public class NewsListActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         queryString += getIntent().getStringExtra("search");
-        SERVICE_URL = "https://newsapi.org/v2/everything?" + queryString + "&from=2020-10-14&sortBy=publishedAt&apiKey=" + API_KEY;
+        SERVICE_URL += queryString + "&from=2020-10-14&sortBy=publishedAt&apiKey=" + API_KEY;
         setContentView(R.layout.activity_news_list);
 
         newsItemList = new ArrayList<NewsItem>();
