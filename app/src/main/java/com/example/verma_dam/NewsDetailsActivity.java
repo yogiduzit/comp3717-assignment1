@@ -77,8 +77,10 @@ public class NewsDetailsActivity extends AppCompatActivity {
     }
 
     private void setupContent(String content) {
-        TextView newsContent = findViewById(R.id.content);
-        newsContent.setText(Html.fromHtml(content, Build.VERSION_CODES.N));
+        if (content != null) {
+            TextView newsContent = findViewById(R.id.content);
+            newsContent.setText(Html.fromHtml(content, Build.VERSION_CODES.N));
+        }
     }
 
     private void setupOriginalURL(URL url) {
