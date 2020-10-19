@@ -1,11 +1,13 @@
 package com.example.verma_dam;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.verma_dam.adapter.NewsItemsAdapter;
@@ -20,13 +22,13 @@ import java.util.Map;
 public class NewsListActivity extends AppCompatActivity {
 
     private static final String API_KEY = "b4350f204db044389a45332ae2003a66";
+    private String queryString = "q=";
     // URL to get news
-    private static String SERVICE_URL = "https://newsapi.org/v2/everything?q=bitcoin&from=2020-10-14&sortBy=publishedAt&apiKey=" + API_KEY;
+    private String SERVICE_URL = "https://newsapi.org/v2/everything?";
 
     private String TAG = NewsListActivity.class.getSimpleName();
     private ListView lv;
     private ArrayList<NewsItem> newsItemList;
-    private String queryString = "q=";
 
     /**
      * Async task class to get json by making HTTP call
@@ -53,7 +55,6 @@ public class NewsListActivity extends AppCompatActivity {
                 // a JSON object that looks like this { "toons": . . . . }
                 Gson gson = new Gson();
                 Map response = gson.fromJson(jsonStr, Map.class);
-
                 BaseNewsItem baseNewsItem = gson.fromJson(jsonStr, BaseNewsItem.class);
                 newsItemList = baseNewsItem.getNewsItems();
             } else {
@@ -86,7 +87,20 @@ public class NewsListActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        String search = getIntent().getStringExtra("search");
+        queryString += search;
+        if (queryString.equals("q=")) {
+            SERVICE_URL += "q=today&from=2020-10-14&sortBy=publishedAt&apiKey=" + API_KEY;
+        }
+        else {
+            SERVICE_URL += queryString + "&from=2020-10-14&sortBy=publishedAt&apiKey=" + API_KEY;
+        }
         setContentView(R.layout.activity_news_list);
+
+        TextView result = findViewById(R.id.textview_result);
+        String res = result.getText().toString();
+        res += " " + search;
+        result.setText(res);
 
         newsItemList = new ArrayList<NewsItem>();
         lv = findViewById(R.id.news_item_list);
