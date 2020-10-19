@@ -7,6 +7,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.verma_dam.adapter.NewsItemsAdapter;
@@ -86,7 +87,8 @@ public class NewsListActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        queryString += getIntent().getStringExtra("search");
+        String search = getIntent().getStringExtra("search");
+        queryString += search;
         if (queryString.equals("q=")) {
             SERVICE_URL += "q=today&from=2020-10-14&sortBy=publishedAt&apiKey=" + API_KEY;
         }
@@ -95,18 +97,13 @@ public class NewsListActivity extends AppCompatActivity {
         }
         setContentView(R.layout.activity_news_list);
 
+        TextView result = findViewById(R.id.textview_result);
+        String res = result.getText().toString();
+        res += " " + search;
+        result.setText(res);
+
         newsItemList = new ArrayList<NewsItem>();
         lv = findViewById(R.id.news_item_list);
         new GetNewsItems().execute();
-    }
-
-    @Override
-    protected void onSaveInstanceState(Bundle outState) {
-        super.onSaveInstanceState(outState);
-    }
-
-    @Override
-    protected void onRestoreInstanceState(Bundle savedInstanceState) {
-        super.onRestoreInstanceState(savedInstanceState);
     }
 }
