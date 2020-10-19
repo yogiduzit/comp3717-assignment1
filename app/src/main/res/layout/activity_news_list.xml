@@ -13,9 +13,11 @@
         android:layout_marginTop="4dp"
         android:gravity="center"
         android:text="@string/results"
+        android:padding="10dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         android:textColor="@android:color/black"
+        android:textStyle="bold"
         android:textSize="20sp"/>
 
     <ListView
@@ -26,6 +28,6 @@
         android:dividerHeight="10dp"
         android:divider="#FAFAFA"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@id/textview_result" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
