@@ -9,4 +9,7 @@
     <string name="publish_date">Published At:</string>
     <string name="origin">Original Story:</string>
     <string name="results">Showing Results For:</string>
+    <string name="ourNames">Yogesh Kumar Verma and Eric Dam</string>
+    <string name="news">News</string>
+    <string name="live">Live</string>
 </resources>

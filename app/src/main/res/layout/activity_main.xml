@@ -7,12 +7,20 @@
     tools:context=".MainActivity"
     android:id="@+id/main_constraint_layout">
 
+
     <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/vert25"
+        android:id="@+id/vert20"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.25" />
+        app:layout_constraintGuide_percent="0.2" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/vert35"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.35" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/vert50"
@@ -22,6 +30,13 @@
         app:layout_constraintGuide_percent="0.5" />
 
     <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/vert60"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.6" />
+
+    <androidx.constraintlayout.widget.Guideline
         android:id="@+id/vert40"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -29,17 +44,59 @@
         app:layout_constraintGuide_percent="0.4" />
 
     <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/horz25"
+        android:id="@+id/horz15"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.25" />
+        app:layout_constraintGuide_percent="0.15" />
+
     <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/horz75"
+        android:id="@+id/horz85"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.75" />
+        app:layout_constraintGuide_percent="0.85" />
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/horz50"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.50" />
+
+    <TextView
+        android:id="@+id/our_names"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/ourNames"
+        android:textStyle="bold"
+        android:textSize="15sp"
+        android:gravity="center"
+        android:textColor="@android:color/black"
+        app:layout_constraintTop_toTopOf="parent"/>
+    
+    <TextView
+        android:id="@+id/news"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toStartOf="@id/horz50"
+        app:layout_constraintBottom_toTopOf="@id/vert20"
+        android:textColor="@android:color/holo_blue_dark"
+        android:textSize="50sp"
+        android:textStyle="bold"
+        android:text="@string/news"/>
+    <TextView
+        android:id="@+id/live"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toEndOf="@id/news"
+        app:layout_constraintBottom_toTopOf="@id/vert20"
+        android:textColor="@android:color/holo_red_dark"
+        android:textSize="50sp"
+        android:textStyle="bold"
+        android:text="@string/live"
+        android:paddingStart="10dp"
+        android:paddingEnd="0dp"
+        android:gravity="center"/>
 
     <EditText
         android:id="@+id/search"
@@ -48,9 +105,9 @@
         android:autofillHints="@string/enter"
         android:hint="@string/enter"
         android:inputType="text"
-        app:layout_constraintLeft_toLeftOf="@id/horz25"
-        app:layout_constraintRight_toRightOf="@id/horz75"
-        app:layout_constraintTop_toTopOf="@id/vert25"
+        app:layout_constraintLeft_toLeftOf="@id/horz15"
+        app:layout_constraintRight_toRightOf="@id/horz85"
+        app:layout_constraintTop_toTopOf="@id/vert35"
         android:drawableEnd="@drawable/ic_baseline_search_24"
         android:drawablePadding="5dp"
         android:background="@drawable/custom_input"
@@ -64,6 +121,7 @@
         android:text="@string/search"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toBottomOf="@id/vert60"
         android:onClick="onSearchClick"
         style="@style/Widget.AppCompat.Button.Colored"/>
 
