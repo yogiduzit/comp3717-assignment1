@@ -6,6 +6,18 @@
     android:layout_height="match_parent"
     tools:context=".NewsListActivity">
 
+    <TextView
+        android:id="@+id/textview_result"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:gravity="center"
+        android:text="@string/results"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:textColor="@android:color/black"
+        android:textSize="20sp"/>
+
     <ListView
         android:id="@+id/news_item_list"
         android:layout_width="match_parent"
@@ -14,7 +26,6 @@
         android:dividerHeight="10dp"
         android:divider="#FAFAFA"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
