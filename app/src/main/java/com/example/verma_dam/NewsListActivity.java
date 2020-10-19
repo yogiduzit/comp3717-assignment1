@@ -3,9 +3,12 @@ package com.example.verma_dam;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -17,11 +20,12 @@ import com.example.verma_dam.http.HttpHandler;
 import com.google.gson.Gson;
 
 import java.util.ArrayList;
-import java.util.Map;
 
 public class NewsListActivity extends AppCompatActivity {
 
     private static final String API_KEY = "b4350f204db044389a45332ae2003a66";
+    static final String PARCEL_NAME = "newsItem";
+  
     private String queryString = "q=";
     // URL to get news
     private String SERVICE_URL = "https://newsapi.org/v2/everything?";
@@ -54,7 +58,6 @@ public class NewsListActivity extends AppCompatActivity {
                 // this step is needed to wrap the JSON array inside
                 // a JSON object that looks like this { "toons": . . . . }
                 Gson gson = new Gson();
-                Map response = gson.fromJson(jsonStr, Map.class);
                 BaseNewsItem baseNewsItem = gson.fromJson(jsonStr, BaseNewsItem.class);
                 newsItemList = baseNewsItem.getNewsItems();
             } else {
@@ -104,6 +107,19 @@ public class NewsListActivity extends AppCompatActivity {
 
         newsItemList = new ArrayList<NewsItem>();
         lv = findViewById(R.id.news_item_list);
+        setItemClickListener();
         new GetNewsItems().execute();
+    }
+
+    private void setItemClickListener() {
+        lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                NewsItem newsItem = newsItemList.get(position);
+                Intent newsDetails = new Intent(getApplicationContext(), NewsDetailsActivity.class);
+                newsDetails.putExtra(PARCEL_NAME, newsItem);
+                startActivity(newsDetails);
+            }
+        });
     }
 }

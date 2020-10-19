@@ -1,12 +1,16 @@
 package com.example.verma_dam.data;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+import android.util.Log;
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 import java.net.URL;
 import java.sql.Timestamp;
 
-public class NewsItem {
+public class NewsItem implements Parcelable {
     private static String TAG = NewsItem.class.getSimpleName();
 
     @SerializedName("source")
@@ -34,6 +38,18 @@ public class NewsItem {
         this.title = newsTitle;
     }
 
+    @SerializedName("author")
+    @Expose
+    private String author;
+
+    public String getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(String author) {
+        this.author = author;
+    }
+
     @SerializedName("description")
     @Expose
     private String description;
@@ -46,7 +62,7 @@ public class NewsItem {
         this.description = description;
     }
 
-    @SerializedName("sourceUrl")
+    @SerializedName("url")
     @Expose
     private URL url;
 
@@ -58,7 +74,7 @@ public class NewsItem {
         try {
             this.url = new URL(url);
         } catch (Exception ex) {
-            System.err.println(ex.getMessage());
+            Log.e(TAG, ex.getMessage());
         }
     }
 
@@ -98,31 +114,47 @@ public class NewsItem {
         this.content = content;
     }
 
-}
-
-class Source {
-    @SerializedName("id")
-    @Expose
-    private String id;
-
-    public String getId() {
-        return id;
+    protected NewsItem(Parcel in) {
+        title = in.readString();
+        description = in.readString();
+        author = in.readString();
+        source = in.readParcelable(Source.class.getClassLoader());
+        try {
+            url = new URL(in.readString());
+        } catch (Exception ex) {
+            Log.e(TAG, ex.getMessage());
+        }
+        urltoImage = in.readString();
+        content = in.readString();
+        publishedAt = Timestamp.valueOf(in.readString());
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public static final Creator<NewsItem> CREATOR = new Creator<NewsItem>() {
+        @Override
+        public NewsItem createFromParcel(Parcel in) {
+            return new NewsItem(in);
+        }
+
+        @Override
+        public NewsItem[] newArray(int size) {
+            return new NewsItem[size];
+        }
+    };
+
+    @Override
+    public int describeContents() {
+        return 0;
     }
 
-    @SerializedName("name")
-    @Expose
-    private String name;
-
-    public String getName() {
-        return name;
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(title);
+        dest.writeString(description);
+        dest.writeString(author);
+        dest.writeParcelable(source, PARCELABLE_WRITE_RETURN_VALUE);
+        dest.writeString(url != null ? url.toString() : null);
+        dest.writeString(urltoImage);
+        dest.writeString(content);
+        dest.writeString(publishedAt.toString());
     }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
 }

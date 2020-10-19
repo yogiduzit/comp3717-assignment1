@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="title_font">20sp</dimen>
+    <dimen name="title_font">18sp</dimen>
     <dimen name="description_font">12sp</dimen>
     <dimen name="news_item_margin">10dp</dimen>
+
+    <dimen name="news_item_title">20dp</dimen>
+    <dimen name="news_item_desc">18dp</dimen>
+    <dimen name="news_item_meta">16dp</dimen>
+    <dimen name="news_item_content">16dp</dimen>
 </resources>

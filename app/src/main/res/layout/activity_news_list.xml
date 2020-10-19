@@ -13,8 +13,6 @@
         android:layout_marginTop="4dp"
         android:gravity="center"
         android:text="@string/results"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         android:textColor="@android:color/black"
@@ -24,12 +22,9 @@
         android:id="@+id/news_item_list"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="36dp"
-        android:divider="@color/colorWhite"
-        android:dividerHeight="10dp"
         android:paddingHorizontal="5dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        android:dividerHeight="10dp"
+        android:divider="#FAFAFA"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
